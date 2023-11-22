@@ -1,4 +1,4 @@
-$PSGalleryProfile = Invoke-WebRequest -Uri $env:PSGALLERY_PROFILE_URI
+$PSGalleryProfile = Invoke-WebRequest -Uri "https://www.powershellgallery.com/profiles/$env:PSGALLERY_PROFILE_NAME"
 $ModuleList = $PSGalleryProfile.links.href.where({
     $_ -like "/packages/*/"
 }) -replace "(\/[A-Za-z]+\/)|(\/)",""

@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/powershell:latest
-ENV PSGALLERY_PROFILE_URI="" \
+ENV PSGALLERY_PROFILE_NAME="" \
     INFLUX_BUCKET="" \
     INFLUX_HOST="" \
     INFLUX_ORG="" \
