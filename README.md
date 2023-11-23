@@ -1,3 +1,6 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/norsknoobing/psgallery-module-downloads?style=flat-square&logo=docker)](https://hub.docker.com/r/norsknoobing/psgallery-module-downloads) [![GitHub repo](https://img.shields.io/badge/GitHub%20repo-gray?style=flat-square&logo=github)](https://github.com/NorskNoobing/psgallery-module-downloads)
+
+
 # Prerequisites
 * An InfluxDB install.
 
