@@ -1,0 +1,27 @@
+name: Publish image to Docker Hub
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: build
+        run: |
+          docker build . -t norsknoobing/psgallery-module-downloads:latest
+      - name: publish
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push norsknoobing/psgallery-module-downloads:latest
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: norsknoobing/psgallery-module-downloads
+          readme-filepath: ./README.md
+          short-description: ${{ github.event.repository.description }}
