@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/**'
 
 jobs:
   publish_image:
@@ -12,16 +14,16 @@ jobs:
         uses: actions/checkout@v3
       - name: build
         run: |
-          docker build . -t norsknoobing/psgallery-module-downloads:latest --progress plain
+          docker build . -t $GITHUB_REPOSITORY:latest --progress plain
       - name: publish
         run: |
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-          docker push norsknoobing/psgallery-module-downloads:latest
+          docker push $GITHUB_REPOSITORY:latest
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: norsknoobing/psgallery-module-downloads
+          repository: $GITHUB_REPOSITORY
           readme-filepath: ./README.md
           short-description: ${{ github.event.repository.description }}
