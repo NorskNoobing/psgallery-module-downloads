@@ -18,3 +18,4 @@ jobs:
           repository: ${{ github.repository }}
           readme-filepath: ./README.md
           short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
