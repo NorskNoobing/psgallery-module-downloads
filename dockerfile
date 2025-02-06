@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:latest
+FROM mcr.microsoft.com/powershell:ubuntu-22.04
 ENV PSGALLERY_PROFILE_NAME="" \
     INFLUX_BUCKET="" \
     INFLUX_HOST="" \
