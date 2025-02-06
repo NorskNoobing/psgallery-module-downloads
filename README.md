@@ -29,7 +29,7 @@ services:
 3. Run the container by using `docker compose up -d` in the directory where your `docker-compose.yml` file is located.
 # Environmental variables
 |Variable|Description|Required|
-|---|---|---|
+|---|---|:-:|
 |PSGALLERY_PROFILE_NAME|The username of your PSGallery profile.|✔|
 |INFLUX_HOST|The hostname of your InfluxDB installation, including the port if applicable. I.e. `192.168.86.10:8086`, `https://influxdb.example.com`, or `http://influxdb:8086`. It's important that you add the protocol when using a hostname, like in the last example.|✔|
 |INFLUX_BUCKET|The name of the InfluxDB bucket that the script should use.|✔|
