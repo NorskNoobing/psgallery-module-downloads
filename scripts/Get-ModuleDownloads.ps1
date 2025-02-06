@@ -12,6 +12,7 @@ function Get-ModuleDownloads {
         Write-Error -ErrorAction Stop -Message @"
 Got error while trying to fetch `"$ModuleName`".
 ------------------------------------------------
+
 $_
 "@
     }
