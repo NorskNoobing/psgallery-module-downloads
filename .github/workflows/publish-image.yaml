@@ -23,12 +23,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # Convert repo name to lowercase for DockerHub
+      - name: Convert repository name to lowercase
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "REPO_NAME=$REPO_NAME" >> "$GITHUB_ENV"
+
+
       # Build the docker image
       - name: build
         run: |
-          docker build . -t ${{ github.repository }}:latest --progress plain
+          docker build . -t ${{ env.REPO_NAME }}:latest --progress plain
       
       # Publish the docker image
       - name: publish
         run: |
-          docker push ${{ github.event.repository.name }}:latest
+          docker push ${{ env.REPO_NAME }}:latest
