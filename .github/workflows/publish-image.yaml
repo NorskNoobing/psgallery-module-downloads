@@ -23,19 +23,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Convert repo name to lowercase for DockerHub
-      - name: Convert repository name to lowercase
-        run: |
-          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          echo "REPO_NAME=$REPO_NAME" >> "$GITHUB_ENV"
+      # Enable Buildx for advanced Docker builds
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-
-      # Build the docker image
-      - name: build
+      # Build and push the Docker image
+      - name: Build and push Docker image
         run: |
-          docker build . -t ${{ env.REPO_NAME }}:latest --progress plain
-      
-      # Publish the docker image
-      - name: publish
-        run: |
-          docker push ${{ env.REPO_NAME }}:latest
+          docker buildx build --platform linux/amd64 \
+            -t ${{ github.repository }}:latest \
+            --push .
