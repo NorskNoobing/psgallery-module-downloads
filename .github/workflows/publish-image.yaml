@@ -31,4 +31,4 @@ jobs:
       # Publish the docker image
       - name: publish
         run: |
-          docker push ${{ github.repository }}:latest
+          docker push ${{ github.event.repository.name }}:latest
